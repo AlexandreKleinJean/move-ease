@@ -27,7 +27,7 @@ public class MovieResource {
         return Response.ok(movies).build();
     }
 
-    @GET
+    /*@GET
     @Path("/{genre}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMovieByGenre(@PathParam("genre") String genre) {
@@ -38,7 +38,7 @@ public class MovieResource {
         } else {
             return Response.ok(movies).build();
         }
-    }
+    }*/
 
     @GET
     @Path("/{id}")
