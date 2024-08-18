@@ -1,6 +1,8 @@
-package org.gs;
+package org.gs.RestfulWebService;
 
 import java.util.List;
+
+import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -17,12 +19,15 @@ import jakarta.ws.rs.core.Response;
 @Path("/movie")
 public class MovieResource {
 
+    private Logger LOGGER = Logger.getLogger(MovieResource.class);
+
     @Inject
     MovieRepository movieRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllMovies() {
+        LOGGER.debug("Get all movies from the database");
         List<Movie> movies = movieRepository.listAll();
         return Response.ok(movies).build();
     }
@@ -44,6 +49,7 @@ public class MovieResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMovieById(@PathParam("id") Long id) {
+        LOGGER.debug("Get one movie by id");
         return movieRepository.findByIdOptional(id)
             .map(movie -> Response.ok(movie).build())
             .orElse(Response.status(Response.Status.NOT_FOUND).build());

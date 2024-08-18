@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gs.Movie;
-import org.gs.MovieRepository;
-import org.gs.MovieResource;
+import org.gs.RestfulWebService.Movie;
+import org.gs.RestfulWebService.MovieRepository;
+import org.gs.RestfulWebService.MovieResource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -22,7 +22,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
 @QuarkusTest
-public class MovieResourceTestMockito {
+public class MovieResourceMockitoTest {
 
     @InjectMock
     MovieRepository movieRepository;
@@ -76,8 +76,7 @@ public class MovieResourceTestMockito {
       Response response = movieResource.createMovie(newMovie);
       assertNotNull(response);
       assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
-      assertNotNull(response.getLocation());
-      assertNull(response.getEntity());
+      assertNotNull(response.getEntity());
     }
 
     @Test

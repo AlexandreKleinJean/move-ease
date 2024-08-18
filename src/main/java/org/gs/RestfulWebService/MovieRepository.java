@@ -1,4 +1,4 @@
-package org.gs;
+package org.gs.RestfulWebService;
 
 import java.util.List;
 
