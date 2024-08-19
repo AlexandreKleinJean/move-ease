@@ -1,6 +1,6 @@
 package org;
 
-import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.common.WithTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,11 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @QuarkusTest
-@QuarkusTestResource(TvSerieWiremockProxy.class)
+@WithTestResource(TvSerieAPIWiremock.class)
 public class TvSerieResourceWiremockTest {
 
   @Test
-  void getWithWireMock() {
+  void getWithWiremock() {
     given()
         .when()
         .param("title", "myTvSerie")

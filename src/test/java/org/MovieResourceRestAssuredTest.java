@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.hasItems;
 @QuarkusTest
 @Tag("integration")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MovieResourceTest {
+public class MovieResourceRestAssuredTest {
     @Test
     @Order(1)
     void getAll(){

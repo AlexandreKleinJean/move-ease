@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
-public class TvSerieWiremockProxy implements QuarkusTestResourceLifecycleManager {
+public class TvSerieAPIWiremock implements QuarkusTestResourceLifecycleManager {
 
   private WireMockServer wireMockServer;
 
@@ -19,7 +19,8 @@ public class TvSerieWiremockProxy implements QuarkusTestResourceLifecycleManager
     configureFor(8089);
 
     stubFor(
-        get(urlEqualTo("/singlesearch/shows?q=myTvSerie"))
+      get(urlPathEqualTo("/singlesearch/shows"))
+      .withQueryParam("q", equalTo("myTvSerie"))
             .willReturn(
                 aResponse()
                     .withHeader("Content-Type", "application/json")
@@ -37,7 +38,7 @@ public class TvSerieWiremockProxy implements QuarkusTestResourceLifecycleManager
             .atPriority(10)
             .willReturn(aResponse().proxiedFrom("http://api.tvmaze.com")));
 
-    return Collections.singletonMap("org.gs.TvSeriesProxy/mp-rest/url", wireMockServer.baseUrl());
+    return Collections.singletonMap("org.gs.TvSerieAPIWiremock/mp-rest/url", wireMockServer.baseUrl());
   }
 
   @Override
