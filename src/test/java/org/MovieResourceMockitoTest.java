@@ -39,6 +39,7 @@ public class MovieResourceMockitoTest {
     movie.setDescription("MyFirstMovie");
     movie.setCountry("Planet");
     movie.setDirector("Me");
+    movie.setGenre("Horror");
     movie.setId(1L);
     }
 
@@ -73,6 +74,7 @@ public class MovieResourceMockitoTest {
       newMovie.setDescription("MySecondMovie");
       newMovie.setCountry("Planet");
       newMovie.setDirector("Me");
+      newMovie.setGenre("Thriller");
       Response response = movieResource.createMovie(newMovie);
       assertNotNull(response);
       assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());

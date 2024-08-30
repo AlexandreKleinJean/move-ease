@@ -39,6 +39,7 @@ public class MovieResourceRestAssuredTest {
               .add("description", "MyThirdMovie")
               .add("director", "Me")
               .add("country", "Planet")
+              .add("genre", "Adventure")
               .build();
   
       given()
