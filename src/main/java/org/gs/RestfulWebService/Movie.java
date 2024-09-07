@@ -13,7 +13,7 @@ public class Movie {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Champ id généré automatiquement, pas de validation nécessaire
+    private Long id;
     
     @NotBlank(message = "Title can't be empty")
     private String title;

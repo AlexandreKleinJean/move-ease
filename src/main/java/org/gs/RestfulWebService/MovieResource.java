@@ -15,6 +15,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -62,6 +63,29 @@ public class MovieResource {
             .map(movie -> Response.ok(movie).build())
             .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateMovie(@PathParam("id") Long id, Movie newMovie) {
+        LOGGER.debug("Update one movie by id");
+        Movie movieToUpdate = movieRepository.findById(id);
+        if (movieToUpdate == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        movieToUpdate.setTitle(newMovie.getTitle());
+        movieToUpdate.setDescription(newMovie.getDescription());
+        movieToUpdate.setGenre(newMovie.getGenre());
+        movieToUpdate.setDirector(newMovie.getDirector());
+
+        movieRepository.persist(movieToUpdate);
+
+        return Response.ok(movieToUpdate).build();
+    }
+
 
     @POST
     @Transactional
