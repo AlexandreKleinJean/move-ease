@@ -19,6 +19,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -53,6 +54,24 @@ public class MovieResource {
             return Response.ok(movies).build();
         }
     }*/
+
+    @GET
+    @Path("/search")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchMoviesByTitle(@QueryParam("q") String title) {
+        if (title == null || title.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Title query parameter is required")
+                        .build();
+        }
+
+        List<Movie> movies = movieRepository.findByTitle(title);
+        if (movies.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(movies).build();
+        }
+    }
 
     @GET
     @Path("/{id}")

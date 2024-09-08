@@ -8,8 +8,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class MovieRepository implements PanacheRepository<Movie>{
     
-    public List<Movie> findByGenre(String genre) {
-        return list("LOWER(genre)", genre.toLowerCase());
+    public List<Movie> findByTitle(String title) {
+        return list("LOWER(title) LIKE ?1", "%" + title.toLowerCase() + "%");
+        //LIKE ?1 "%" titre "%" = requete JPQL cherchant un mot partiel dans le titre
     }
 
 }
