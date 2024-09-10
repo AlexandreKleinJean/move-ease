@@ -28,6 +28,11 @@ services:
       - QUARKUS_DATASOURCE_USERNAME=xander
       - QUARKUS_DATASOURCE_PASSWORD=mypsql
       - QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION=update
+      #- QUARKUS_OIDC_AUTH_SERVER_URL=https://accounts.google.com
+      #- QUARKUS_OIDC_CLIENT_ID=9456972959-e40npvfni26ur4b2qr9uvhm7h0nbvehv.apps.googleusercontent.com
+      #- QUARKUS_OIDC_CREDENTIALS_SECRET=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
+      #- QUARKUS_OIDC_APPLICATION_TYPE=web-app
+      #- QUARKUS_OIDC_AUTHENTICATION_SCOPES=email
 
 volumes:
   pg_data:
